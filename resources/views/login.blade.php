@@ -21,20 +21,74 @@
                 Login Your Account
             </h1>
 
-            <form action="" class="mt-20 flex flex-col gap-10 px-8">
+            <form
+                action="{{ route("doLogin") }}"
+                method="post"
+                class="mt-20 flex flex-col gap-10 px-8"
+            >
+                @if (session()->has("error"))
+                    <div role="alert" class="alert alert-error bg-red-400">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 shrink-0 stroke-current"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                        <span>{{ session()->get("error") }}</span>
+                    </div>
+                @endif
+
+                @if (session()->has("message"))
+                    <div role="alert" class="alert alert-success bg-green-400">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 shrink-0 stroke-current"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                        <span>{{ session()->get("message") }}</span>
+                    </div>
+                @endif
+
+                @csrf
                 <label for="username">
                     <input
                         type="text"
+                        name="username"
                         placeholder="Username"
+                        value="{{ old("username") }}"
                         class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
                     />
+                    @error("username")
+                        <p class="my-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
                 </label>
+
                 <label for="password">
                     <input
                         type="text"
+                        name="password"
                         placeholder="Password"
+                        value="{{ old("password") }}"
                         class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 bg-none p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
                     />
+                    @error("username")
+                        <p class="my-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
                 </label>
 
                 <div class="flex flex-col">
