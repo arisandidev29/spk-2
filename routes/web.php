@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlternativeController;
+use App\Http\Controllers\BobotController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
@@ -49,9 +50,12 @@ Route::get('/kriteria', function() {
 })->name('kriteria');
 
 
-Route::get('/bobot', function() {
-    return view('admin.bobot');
-})->name('bobot');
+Route::controller(BobotController::class)->group(function() {
+    Route::get('/bobot','show')->name('admin.bobot');
+    Route::post('/bobot/create','create')->name('admin.bobot.create');
+    Route::put('/bobot/edit','update')->name('admin.bobot.edit');
+    Route::delete('/bobot/delete','destroy')->name('admin.bobot.delete');
+});
 
 
 Route::controller(AlternativeController::class)->group(function() {
@@ -59,4 +63,4 @@ Route::controller(AlternativeController::class)->group(function() {
     Route::post('/alternative/create','create')->name('admin.alternative.create');
     Route::post('/altrnative/delete','destroy')->name('admin.alternative.delete');
     Route::post('/alternative/edit','update')->name('admin.alternaive.edit');
-});
+})->middleware(['auth',AdminMiddleware::class]);

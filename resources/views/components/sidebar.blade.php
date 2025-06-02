@@ -112,7 +112,7 @@
                 </a>
             </li>
             <li class="text-primary rounded-lg bg-white p-2 hover:bg-slate-100">
-                <a href="{{route('bobot')}}">
+                <a href="{{route('admin.bobot')}}">
                     <svg
                         class="fill-primary w-6"
                         viewBox="0 0 24 24"
