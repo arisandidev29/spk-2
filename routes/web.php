@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
@@ -52,6 +53,10 @@ Route::get('/bobot', function() {
     return view('admin.bobot');
 })->name('bobot');
 
-Route::get('/alternative', function() {
-  return view('admin.alternative'); 
-})->name('admin.alternative');
+
+Route::controller(AlternativeController::class)->group(function() {
+    Route::get('/alternative','show')->name('admin.alternative');
+    Route::post('/alternative/create','create')->name('admin.alternative.create');
+    Route::post('/altrnative/delete','destroy')->name('admin.alternative.delete');
+    Route::post('/alternative/edit','update')->name('admin.alternaive.edit');
+});

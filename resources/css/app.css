@@ -5,12 +5,15 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@plugin "daisyui" {
-    themes:
-        light light,
-        dark --prefersdark,
-        lemonade;
+@plugin "daisyui"; 
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #009739;
+  --color-secondary: teal;
 }
+  
 @theme {
     --font-sans: "Montserrat", sans-serif;
 
