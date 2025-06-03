@@ -95,7 +95,7 @@
                 </a>
             </li>
             <li class="text-primary rounded-lg bg-white p-2 hover:bg-slate-100">
-                <a href="{{route('kriteria')}}">
+                <a href="{{route('admin.kriteria')}}">
                     <svg
                         fill="#000000"
                         class="fill-primary w-6"

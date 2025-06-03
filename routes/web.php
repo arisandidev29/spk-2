@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\BobotController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
@@ -45,9 +46,14 @@ Route::get('/users',function() {
     return view('admin.user');
 })->name('users')->middleware(['auth',AdminMiddleware::class]);
 
-Route::get('/kriteria', function() {
-    return view('admin.kriteria');
-})->name('kriteria');
+
+
+Route::controller(KriteriaController::class)->group(function() {
+    Route::get('/kriteria','show')->name("admin.kriteria");
+    Route::post('/kriteria/create','create')->name('admin.kriteria.create');
+    Route::delete('/kriteria/delete','destroy')->name('admin.kriteria.delete');
+    Route::put('/kriteria/edit','update')->name('admin.kriteria.edit');
+});
 
 
 Route::controller(BobotController::class)->group(function() {

@@ -15,7 +15,6 @@ class BobotSeeder extends Seeder
     {
         Bobot::create([
             'nilai' => 1,
-            'normalisasi' => 0.1,
             'keterangan' => 'Sangat Rendah'
         ]);
     }
