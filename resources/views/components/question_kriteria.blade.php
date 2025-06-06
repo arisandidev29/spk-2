@@ -1,31 +1,47 @@
-<div class="bg-secondary p-6 rounded-xl">
+@props([
+    "kriteria",
+    "alternatives",
+])
 
-                <div class="flex gap-4 items-center">
-                    <p class="w-10 h-10 bg-white rounded-full flex justify-center items-center font-bold self-start">1</p>
-                    <div>
+<div class="bg-secondary rounded-xl p-6">
+    <div class="flex items-center gap-4">
+        <p
+            class="flex h-10 w-10 items-center justify-center self-start rounded-full bg-white font-bold"
+        >
+            {{ $kriteria->kd_kriteria}}
+        </p>
+        <div>
+            <p class="text-lg font-bold text-white">{{ $kriteria->nama }}</p>
 
-                        <p class="text-white font-bold text-lg">Minat Pribadi</p>
+            <p class="text-gray-200">{{ $kriteria->desc }}</p>
+        </div>
+    </div>
 
-                        <p class="text-gray-200">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente ducimus consectetur accusamus modi autem est fugiat iure natus, provident, possimus animi.</p>
-                    </div>
-                </div>
+    <hr class="my-4 text-gray-800" />
 
-                <hr class="text-gray-800 my-4">
+    <div class="flex justify-evenly gap-8">
+        @foreach ($alternatives as $index => $alternative)
+            @php
+                $error = $kriteria->kd_kriteria . "." . $alternative->name;
+                $name = "userAnswer[$kriteria->kd_kriteria][$alternative->name]";
+            @endphp
 
+            <div class="flex flex-col items-center">
+                <p class="text-lg text-white my-4">{{ $alternative->name }}</p>
+                <input type="hidden" name="{{$name }}[kd_kriteria]" value="{{$kriteria->kd_kriteria}}">
+                <input type="hidden" name="{{$name }}[alternative_id]" value="{{$alternative->id}}">
+                <input
+                    type="text"
+                    name="{{ $name }}[jawaban]"
+                    class="input w-full rounded-xl bg-white outline-0 {{$errors->has($error) ? 'border-red-500' : ''}}"
+                    placeholder="Type here"
+                    value="{{ old($kriteria->kd_kriteria . "." . $alternative->name) }}"
+                />
 
-                <div class="flex  gap-4 justify-evenly ">
-                    <div class="flex flex-col items-center ">
-                        <p class="text-white text-lg">Sistem Informasi</p>
-                         <input type="text" class="input bg-white rounded-xl" placeholder="Type here" />
-                    </div>
-                    <div class="flex flex-col items-center ">
-                        <p class="text-white text-lg">Manajemen Informatika</p>
-                         <input type="text" class="input bg-white rounded-xl" placeholder="Type here" />
-                    </div>
-                    <div class="flex flex-col items-center ">
-                        <p class="text-white text-lg">Komputerisasi Akuntansi</p>
-                         <input type="text" class="input bg-white rounded-xl" placeholder="Type here" />
-                    </div>
-                </div>
-
+                @error($error)
+                    <p class="text-sm text-red-300">{{ $message }}</p>
+                @enderror
             </div>
+        @endforeach
+    </div>
+</div>

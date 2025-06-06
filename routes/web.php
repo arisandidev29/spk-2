@@ -3,7 +3,9 @@
 use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\BobotController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\questionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -28,13 +30,19 @@ Route::controller(UserController::class)->group(function() {
     
 });
 
-Route::get('/homepage', function() {
-    return view('user.homepage');
-})->name('homepage')->middleware(['auth',UserMiddleware::class]);
+Route::controller(UsersController::class)->group(function() 
+{
+    Route::get('/user/homepage', 'show')->name('user.homepage')->middleware(['auth',UserMiddleware::class]);
+    Route::get('/user/result','result')->name('user.result')->middleware(['auth',UserMiddleware::class]);
+    Route::delete('/user/result/delete','delete')->name('user.result.delete');
+});
 
-Route::get('/user/question', function() {
-    return view('user.question');
-})->name('question')->middleware(['auth',UserMiddleware::class]);
+
+
+Route::controller(questionController::class)->group(function() {
+    Route::get('/user/question','view')->name('question');
+    Route::post('/user/question/create','create')->name('question.create');
+});
 
 // admin
 
