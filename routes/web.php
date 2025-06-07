@@ -19,6 +19,12 @@ Route::get('/register', function() {
     return view('register');
 });
 
+
+Route::prefix('/profile')->group(function() {
+    Route::get('/view',[UserController::class,'profile'])->name('profile.view');
+    Route::put('/edit',[UserController::class,'updateProfile'])->name('profile.edit');
+});
+
 // User
 
 Route::controller(UserController::class)->group(function() {

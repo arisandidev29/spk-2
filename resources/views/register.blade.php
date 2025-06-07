@@ -172,13 +172,7 @@
                     @enderror
                 </label>
 
-                <label for="profile pic">
-                    <p class="text-primary pl-4 text-xl">Profile Picture</p>
-                    <input
-                        type="file"
-                        class="file-input file-input-primary mt-2"
-                    />
-                </label>
+             
 
                 <div class="flex flex-col">
                     <button

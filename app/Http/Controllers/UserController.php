@@ -7,6 +7,9 @@ use App\Service\TokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -80,40 +83,12 @@ class UserController extends Controller
       return redirect()->route('login')->with('message', 'Berhasil buat Akun, silakan login !');
     }
 
-    /*
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function profile() {
+        return view('profile');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    public function logout(Request $request) {
+      public function logout(Request $request) {
         Auth::logout();
 
         $request->session()->invalidate();
@@ -121,5 +96,39 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+
+    public function updateProfile(Request $request) {
+        $request->validate([
+            'name' => ['required',Rule::unique('users')->ignore(Auth::id())],
+            'email' => ['required','email:rfc', Rule::unique('users')->ignore(Auth::id())],
+            'profile_pic' => ['nullable',File::image()->max('2mb')],
+        ]);
+
+
+        $user = User::where('id', Auth::id())->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ]);
+
+
+        if($request->file('profile_pic')) {
+            $user = auth()->user();
+            $filename = "avatar_{$user->name}_{$user->id}." . $request->file('profile_pic')->getClientOriginalExtension();
+
+            // delete old profile pic 
+            Storage::delete("/user".$filename);
+
+            // insert new profile pic
+            $request->file('profile_pic')->storeAs('user',$filename,'public');
+            $user->profile_pic = "storage/user/" . $filename;
+            $user->save();
+        }
+
+        return back()->with('success', 'Profile updated successfully!');
+
+
+
     }
 }
