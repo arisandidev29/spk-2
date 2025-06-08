@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NormalizeBobotkriteria;
 use App\Models\Bobot;
 use App\Models\Kriteria;
 use App\Service\BobotService;
@@ -39,7 +40,7 @@ class KriteriaController extends Controller
         ]);
 
 
-        $bobotService->setNormalizaionBobotToKriteria();
+        NormalizeBobotkriteria::dispatch();
         
         
         return back()
@@ -73,16 +74,17 @@ class KriteriaController extends Controller
                 [...$validated]
             );
             
-            $bobotService->setNormalizaionBobotToKriteria();
+            NormalizeBobotkriteria::dispatch();
+            
+            return back()->with('success', 'Bobot Successfully Updated');
+        }
 
-        return back()->with('success', 'Bobot Successfully Updated');
-    }
-
-
-    public function destroy(Request $request, Kriteria $kriteria)
-    {
-        $id = $request->input('id');
-        $kriteria->where('kd_kriteria', $id)->delete();
+        
+        public function destroy(Request $request, Kriteria $kriteria)
+        {
+            $id = $request->input('id');
+            $kriteria->where('kd_kriteria', $id)->delete();
+            NormalizeBobotkriteria::dispatch();
 
         return back()
             ->with('success', 'Kriteria successfully deleted');

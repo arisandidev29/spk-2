@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Events\NormalizeBobotkriteria;
 use App\Models\Bobot;
 use App\Models\Kriteria;
 use App\Service\BobotService;
@@ -47,7 +48,6 @@ class KriteriaSeeder extends Seeder
         ]);
 
 
-        $BobotService = app(BobotService::class);
-        $BobotService->setNormalizaionBobotToKriteria();
+        NormalizeBobotkriteria::dispatch();
     }
 }
