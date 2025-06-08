@@ -14,8 +14,16 @@ class AlternativeSeeder extends Seeder
     public function run(): void
     {
         Alternative::create([
-            'kode_alternative' => "Si",
+            'kode_alternative' => "SI",
             'name' => 'sistem informasi'
+        ]);
+        Alternative::create([
+            'kode_alternative' => "MI",
+            'name' => 'Manajemen Informatika'
+        ]);
+        Alternative::create([
+            'kode_alternative' => "KA",
+            'name' => 'Komputerisasi Akuntansi'
         ]);
         
     }

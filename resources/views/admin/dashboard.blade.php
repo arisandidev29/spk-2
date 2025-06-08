@@ -7,10 +7,10 @@
         <hr />
 
         {{-- stat --}}
-        <x-admin-stat />
+        <x-admin-stat :totalUser="$totalUser" :totalKriteria="$totalKriteria" :totalAlternative="$totalAlternative" />
 
         <div class="flex justify-center">
-            <x-user-registration-chart />
+            <x-user-registration-chart :userRegisration="$userRegisration"/>
             <x-promram-studi-chart />
         </div>
     </div>

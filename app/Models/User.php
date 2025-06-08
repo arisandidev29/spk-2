@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function UserJawaban() {
         return $this->hasMany(UserJawaban::class);
     }
+
+    public function HasilRekomendasi() {
+        return $this->hasMany(HasilRekomendasi::class);
+    }
 }

@@ -170,7 +170,10 @@
                     @error("token")
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
+
+                    <a href="{{route('howtogettoken')}}" class="text-primary underline italic hover:text-green-500 text-xs">Cara Dapat token !</a>
                 </label>
+
 
              
 

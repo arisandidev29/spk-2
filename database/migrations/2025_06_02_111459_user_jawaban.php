@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hasil_rekomendasis', function (Blueprint $table) {
+         Schema::create('user_jawabans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('alternative_id')->constrained()->onDelete('cascade')->onUpdate('cascade'); 
-            $table->double('vektor_s')->nullable();
-            $table->double('vektor_v')->nullable();
-            $table->string('rangking')->nullable();
+            $table->string('kd_kriteria');
+            $table->foreignId('alternative_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('jawaban');
             $table->timestamps();
+
+            $table->foreign('kd_kriteria')->references('kd_kriteria')->on('kriterias')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hasil_rekomendasis');
+        Schema::dropIfExists('user_jawabans');
     }
 };

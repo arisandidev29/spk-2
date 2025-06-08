@@ -45,6 +45,9 @@
                     
                 @enderror
 
+
+                <a href="{{route('changepassword')}}" class="text-primary text-sm my-2 italic hover:text-green-800">Ubah Password ! </a>
+
                 <button class="btn bg-primary text-white">Edit</button>
              </form>
     </div>

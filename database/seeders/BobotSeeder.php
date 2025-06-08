@@ -17,5 +17,21 @@ class BobotSeeder extends Seeder
             'nilai' => 1,
             'keterangan' => 'Sangat Rendah'
         ]);
+        Bobot::create([
+            'nilai' => 2,
+            'keterangan' => 'Rendah'
+        ]);
+        Bobot::create([
+            'nilai' => 3,
+            'keterangan' => 'Cukup'
+        ]);
+        Bobot::create([
+            'nilai' => 4,
+            'keterangan' => 'Baik'
+        ]);
+        Bobot::create([
+            'nilai' => 5,
+            'keterangan' => 'Sangat Baik'
+        ]);
     }
 }

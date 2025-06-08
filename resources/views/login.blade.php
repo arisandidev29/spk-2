@@ -131,6 +131,10 @@
                     @enderror
                 </label>
 
+                <a href="{{route('changepassword')}}" class="text-primary italic underline hover:text-green-800 ">
+                    <small>Lupa Password ?</small>
+                </a>
+
                 <div class="flex flex-col">
                     <button
                         class="btn bg-primary mx-auto mt-7 max-w-max rounded-xl border-none px-10 py-8 text-2xl text-white"

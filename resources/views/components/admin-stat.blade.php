@@ -1,3 +1,9 @@
+@props([
+    'totalUser',
+    'totalKriteria',
+    'totalAlternative'
+
+])
 <div class="stats my-4 w-full shadow">
     <div class="stat">
         <div class="stat-figure text-secondary">
@@ -22,7 +28,7 @@
         </div>
 
         <div class="stat-title">User</div>
-        <div class="stat-value">31K</div>
+        <div class="stat-value">{{$totalUser}}</div>
     </div>
 
     <div class="stat">
@@ -65,7 +71,7 @@
             </svg>
         </div>
         <div class="stat-title">Kriteria</div>
-        <div class="stat-value">4,200</div>
+        <div class="stat-value">{{$totalKriteria}}</div>
     </div>
 
     <div class="stat">
@@ -120,8 +126,8 @@
                 </g>
             </svg>
         </div>
-        <div class="stat-title">User has choise</div>
-        <div class="stat-value">1,200</div>
+        <div class="stat-title">Alternative</div>
+        <div class="stat-value">{{$totalAlternative}}</div>
 
         
     </div>
