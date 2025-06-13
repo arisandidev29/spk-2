@@ -1,8 +1,8 @@
 <x-layout >
     <x-header />
 
-    <div class="max-w-xl mx-auto my-4 min-h-screen flex justify-center items-center">
-        <div class="shadow-xl w-lg mx-auto border-slate-500 border-2 rounded-2xl p-4 py-8">
+    <div class="max-w-xl  mx-auto my-4 min-h-screen flex justify-center px-3 items-center">
+        <div class="shadow-xl w-lg  mx-auto border-slate-500 border-2 rounded-2xl p-4 py-8">
 
             <h1 class="text-2xl font-bold text-center text-primary">Change Password</h1> 
             <p class="text-sm m-2 text-center my-4">Kamu akan melakukan Perubahan password, masukan email kamu Token  di bawah ini</p>

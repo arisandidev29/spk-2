@@ -3,7 +3,7 @@
     <div
         class="m-8 mx-auto my-8 min-h-[100vh] max-w-3xl items-center justify-center"
     >
-        <h1 class="text-primary my-8 text-center text-4xl">
+        <h1 class="text-primary my-8 text-center text-2xl lg:text-4xl">
             Profile : {{ auth()->user()->name }}
         </h1>
 

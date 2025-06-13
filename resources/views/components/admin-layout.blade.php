@@ -1,7 +1,7 @@
 <x-layout>
     <x-header />
     <x-sidebar />
-    <div class="m-8 mx-auto max-w-7xl">
+    <div class="m-8 mx-auto w-[90%] max-w-7xl">
 
         {{$slot}}
     </div>

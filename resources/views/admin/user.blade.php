@@ -6,7 +6,7 @@
         <x-alert.success message="{{session()->get('success')}}" />
     @endif
 
-    <h1 class="text-primary my-8 font-bold">
+    <h1 class="text-primary my-4 lg:my-8 font-bold text-xs md:text-base">
         User Registration Token :
         <span class="bg-primary rounded-lg p-1 text-white">{{ $token }}</span>
         <a href="{{ route("refresh.token") }}">

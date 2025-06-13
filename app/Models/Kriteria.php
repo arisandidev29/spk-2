@@ -16,6 +16,7 @@ class Kriteria extends Model
         'nama',
         'bobot_id',
         'normalisasi',
+        'kategori',
         'desc'
     ];
 

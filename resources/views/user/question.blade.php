@@ -2,9 +2,9 @@
     <x-header />
 
 
-    <div class="w-[90%]h-screen m-4 mx-auto max-w-5xl">
+    <div class="w-[90%] h-screen m-4 mx-auto max-w-5xl">
         <p
-            class="rounded-xl bg-green-800 p-4 text-center font-semibold text-gray-300"
+            class="rounded-xl bg-green-800 p-4 text-center text-sm md:text-base font-semibold text-gray-300"
         >
             Kamu dapat dapat mengisi Nilai dari setiap keriteria di bawah,
             setiap kriteria terdapat nilai untuk masing-masing program studi,
@@ -23,7 +23,7 @@
                 <x-question_kriteria  :kriteria="$kriteria" :alternatives="$alternatives"  />
                 @endforeach
 
-                <button class="btn bg-yellow-500 text-black">Kirim</button>
+                <button class="btn bg-yellow-500 text-black my-4">Kirim</button>
             </form>
         </div>
     </div>

@@ -1,8 +1,10 @@
 <x-layout>
-    <div class="grid grid-cols-[.7fr_.3fr]">
+    <div
+        class="mx-auto grid w-[90%] max-w-2xl grid-cols-1 lg:w-full lg:max-w-screen lg:grid-cols-[.7fr_.3fr]"
+    >
         <div
             style="background-image: url(/asset/pattern.svg)"
-            class="sticky top-0 h-screen w-full bg-repeat-x p-8 pl-8"
+            class="sticky top-0 hidden h-screen w-full bg-repeat-x p-8 pl-8 lg:block"
         >
             <img src="/asset/logo.png" alt="logo" class="w-40" />
 
@@ -14,14 +16,21 @@
             </div>
         </div>
         <div class="p-4">
-            <h1 class="text-primary mt-[15vh] text-center text-3xl">
+            <img
+                src="/asset/logo color.svg"
+                alt="logo"
+                class="w-24 lg:hidden"
+            />
+            <h1
+                class="text-primary mt-8 text-center text-xl lg:mt-[15vh] lg:text-3xl"
+            >
                 Register Your Account
             </h1>
 
             <form
                 action="{{ route("doRegister") }}"
                 method="post"
-                class="mt-20 flex flex-col gap-10 px-8"
+                class="mt-10 flex flex-col gap-10 px-8 lg:mt-20"
             >
                 @csrf
 
@@ -30,8 +39,8 @@
                         type="text"
                         placeholder="Username"
                         name="username"
-                        value="{{old('username')}}"
-                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
+                        value="{{ old("username") }}"
+                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-base outline-0 active:bg-none lg:text-xl lg:placeholder:text-xl"
                     />
                     @error("username")
                         <p class="text-sm text-red-500">{{ $message }}</p>
@@ -42,24 +51,28 @@
                         type="email"
                         placeholder="Email"
                         name="email"
-                        value="{{old('email')}}"
-                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
+                        value="{{ old("email") }}"
+                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-base outline-0 active:bg-none lg:text-xl lg:placeholder:text-xl"
                     />
                     @error("email")
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </label>
 
-                <label x-data="{showPassword : false}" for="Password" class="relative">
+                <label
+                    x-data="{ showPassword: false }"
+                    for="Password"
+                    class="relative"
+                >
                     <input
                         :type="showPassword ? 'text' : 'password'"
                         placeholder="Password"
                         name="password"
-                        value="{{old('password')}}"
-                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
+                        value="{{ old("password") }}"
+                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-base outline-0 active:bg-none lg:text-xl lg:placeholder:text-xl"
                     />
 
-                                   {{-- eye --}}
+                    {{-- eye --}}
                     <button class="absolute top-6 right-0">
                         {{-- eye open --}}
                         <svg
@@ -99,21 +112,26 @@
                         </svg>
                     </button>
 
-
-                    <small class="text-slate-600 my-1">Password harus 8 karakter</small>
+                    <small class="my-1 text-slate-600">
+                        Password harus 8 karakter
+                    </small>
 
                     @error("password")
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </label>
 
-                <label x-data="{showPassword : false}" for="Password" class="relative">
+                <label
+                    x-data="{ showPassword: false }"
+                    for="Password"
+                    class="relative"
+                >
                     <input
                         :type="showPassword ? 'text' : 'password'"
                         placeholder="password confirmation"
                         name="password_confirmation"
-                        value="{{old('password_confirmation')}}"
-                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
+                        value="{{ old("password_confirmation") }}"
+                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 p-4 text-base outline-0 active:bg-none lg:text-xl lg:placeholder:text-xl"
                     />
 
                     {{-- eye --}}
@@ -164,22 +182,24 @@
                         type="text"
                         placeholder="Token"
                         name="token"
-                        value="{{old('token')}}"
-                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 bg-none p-4 text-xl outline-0 placeholder:text-xl active:bg-none"
+                        value="{{ old("token") }}"
+                        class="border-b-primary text-primary placeholder:text-primary my-2 w-full border-b-4 bg-none p-4 text-base outline-0 active:bg-none lg:text-xl lg:placeholder:text-xl"
                     />
                     @error("token")
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
 
-                    <a href="{{route('howtogettoken')}}" class="text-primary underline italic hover:text-green-500 text-xs">Cara Dapat token !</a>
+                    <a
+                        href="{{ route("howtogettoken") }}"
+                        class="text-primary text-xs italic underline hover:text-green-500"
+                    >
+                        Cara Dapat token !
+                    </a>
                 </label>
-
-
-             
 
                 <div class="flex flex-col">
                     <button
-                        class="btn bg-primary mx-auto mt-7 max-w-max rounded-xl border-none px-10 py-8 text-2xl text-white"
+                        class="btn bg-primary mx-auto mt-7 max-w-max rounded-xl border-none px-6 py-4 text-lg text-white lg:px-10 lg:py-8 lg:text-2xl"
                     >
                         Daftar
                     </button>

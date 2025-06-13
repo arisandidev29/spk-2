@@ -4,7 +4,7 @@
         <!-- Page content here -->
         <label
             for="my-drawer"
-            class="btn btn-primary drawer-button fixed top-[10vh] left-8 rounded-xl border-0"
+            class="btn btn-primary drawer-button fixed -left-4 top-[15vh] md:top-[10vh] md:left-8 rounded-xl border-0"
         >
             <svg
                 class="w-8 text-white"

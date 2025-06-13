@@ -22,7 +22,7 @@ class SpkService
                 return pow($j->jawaban, $j->kriteria->normalisasi);
             })->reduce(function ($carry, $item) {
                 return $carry * $item;
-            }, 1), 2);
+            }, 1), 4);
         });
 
 
@@ -33,7 +33,7 @@ class SpkService
     public function calculateVektorV($vektorSResult)
     {
         $vektorV = $vektorSResult->map(function ($vektorS) use ($vektorSResult) {
-            return number_format($vektorS / $vektorSResult->sum(), 2);
+            return number_format($vektorS / $vektorSResult->sum(), 4);
         });
         return $vektorV;
     }

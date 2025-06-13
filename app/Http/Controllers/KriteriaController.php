@@ -26,6 +26,7 @@ class KriteriaController extends Controller
             'kd_kriteria' => 'required|unique:kriterias,kd_kriteria',
             'nama' => 'required',
             'bobot_id' => 'required|exists:bobots,id',
+            'kategori' => 'required|in:banefit,cost',
             'desc' => 'nullable|string'
         ]);
 
@@ -36,6 +37,7 @@ class KriteriaController extends Controller
             'kd_kriteria' => $validated['kd_kriteria'],
             'nama' => $validated['nama'],
             'bobot_id' => $validated['bobot_id'],
+            'kategori' => $validated['kategori'],
             'desc' => $validated['desc']
         ]);
 
@@ -54,6 +56,7 @@ class KriteriaController extends Controller
             'kd_kriteria' => ['required', Rule::unique('kriterias')->ignore($request->input('kd_kriteria' ),'kd_kriteria')],
             'nama' => 'required',
             'bobot_id' => 'required|exists:bobots,id',
+            'kategori' => 'required|in:banefit,cost',
             'desc' => 'nullable|string'
         ]);
         

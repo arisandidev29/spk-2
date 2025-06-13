@@ -63,6 +63,16 @@
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
 
+                <select class="select w-full" name="kategori">
+                    <option disabled selected>Pilih Kategori</option>
+                    <option value="banefit">benefit</option>
+                    <option value="cost">cost</option>
+                </select>
+
+                @error("kategori")
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                @enderror
+
                 <textarea
                     class="textarea w-full"
                     placeholder="Desc"
@@ -76,7 +86,7 @@
             </form>
         </x-modal.main>
 
-        <table class="table-zebra table">
+        <table class="table-zebra table table-sm ">
             <thead>
                 <tr>
                     <th></th>
@@ -84,6 +94,7 @@
                     <th>Nama</th>
                     <th>Bobot</th>
                     <th>Normalisasi Bobot</th>
+                    <th>Kategori</th>
                     <td>desc</td>
                     <td></td>
                 </tr>
@@ -96,6 +107,7 @@
                         <td>{{ $kriteria->nama }}</td>
                         <td>{{ $kriteria->bobot->nilai }}</td>
                         <td>{{ $kriteria->normalisasi }}</td>
+                        <td>{{ $kriteria->kategori }}</td>
                         <td>{{ $kriteria->desc }}</td>
                         <td>
                             {{-- edit --}}
@@ -118,7 +130,11 @@
                                         @csrf
                                         @method("put")
 
-                                        <input type="hidden" name="old_kd_kriteria" value="{{$kriteria->kd_kriteria}}">
+                                        <input
+                                            type="hidden"
+                                            name="old_kd_kriteria"
+                                            value="{{ $kriteria->kd_kriteria }}"
+                                        />
                                         <input
                                             type="text"
                                             placeholder="kode kriteria"
@@ -127,7 +143,7 @@
                                             class="input w-full"
                                         />
 
-                                        @error("kd_kriteria",'edit')
+                                        @error("kd_kriteria", "edit")
                                             <p class="text-sm text-red-500">
                                                 {{ $message }}
                                             </p>
@@ -140,7 +156,7 @@
                                             value="{{ old("nama", $kriteria->nama) }}"
                                             class="input w-full"
                                         />
-                                        @error("nama",'edit')
+                                        @error("nama", "edit")
                                             <p class="text-sm text-red-500">
                                                 {{ $message }}
                                             </p>
@@ -163,7 +179,23 @@
                                             @endforeach
                                         </select>
 
-                                        @error("bobot_id",'edit')
+                                        @error("bobot_id", "edit")
+                                            <p class="text-sm text-red-500">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+
+                                        <select
+                                            class="select w-full"
+                                            name="kategori"
+                                        >
+                                            <option @selected($kriteria->kategori == 'banefit') value="banefit">
+                                                benefit
+                                            </option>
+                                            <option @selected($kriteria->kategori == 'cost') value="cost">cost</option>
+                                        </select>
+
+                                        @error("kategori",'edit')
                                             <p class="text-sm text-red-500">
                                                 {{ $message }}
                                             </p>
@@ -176,7 +208,7 @@
                                         >
 {{ old("desc", $kriteria->desc) }}</textarea
                                         >
-                                        @error("desc",'edit')
+                                        @error("desc", "edit")
                                             <p class="text-sm text-red-500">
                                                 {{ $message }}
                                             </p>

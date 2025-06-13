@@ -1,12 +1,12 @@
 <x-layout>
     <x-header />
-    <div class="m-8 flex max-w-6xl mx-auto min-h-[80vh] flex-col items-center justify-center gap-4">
+    <div class="m-8 flex w-[90%] max-w-6xl mx-auto min-h-[80vh] flex-col items-center justify-center gap-4">
        <a href="{{route('user.homepage')}}" class="self-start">
         <button class="btn bg-primary text-white rounded-xl ">Homepage</button>
         </a> 
         
-        <img src="/asset/data-report.svg" alt="img" class="w-96">
-        <h1 class="text-2xl my-3"> Hasil Rekomendasi untuk kamu yaitu :  <span class="bg-primary text-white rounded-lg p-2 font-bold">{{$hasil->first()->alternative->name}} </span> </h1>
+        <img src="/asset/data-report.svg" alt="img" class=" my-6 w-1/2 lg:w-96">
+        <h1 class=" text-base text-center lg:text-2xl my-3"> Hasil Rekomendasi untuk kamu yaitu :  <span class="bg-primary text-white rounded-lg p-2 font-bold">{{$hasil->first()->alternative->name}} </span> </h1>
         
 
         <form action="{{route('user.result.delete')}}" method="post">
@@ -16,11 +16,10 @@
         </form>
         <small>Kurang puas kamu dapat pilih ulang !</small>
 
-        <div class="flex  gap-8 w-full my-8 ">
+        <div class="flex flex-col md:flex-row   gap-8 w-full my-8 ">
             <div class="w-full">
                 <canvas id="statistic-chart" class="w-full">/canvas>
             </div>
-
 
                 <table class="table-xs table shadow-xl">
                     <thead>
@@ -49,9 +48,9 @@
         </div>
 
 
-        <h3 class="text-primary text-xl text-left self-start"># Tabel Jawaban</h3>
+        <h3 class="overflow-x-auto w-full text-primary text-sm lg:text-xl text-left self-start"># Tabel Jawaban</h3>
 
-        <table class="table-sm shadow-md table my-8">
+        <table class=" table-xs lg:table-sm shadow-md overflow-x-scroll table-auto lg:table my-8">
             <thead>
                 <tr>
                     <th></th>

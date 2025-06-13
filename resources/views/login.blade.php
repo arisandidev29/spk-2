@@ -1,8 +1,8 @@
 <x-layout>
-    <div class="grid grid-cols-[.7fr_.3fr]">
+    <div class=" max-w-2xl w-[90%] mx-auto lg:max-w-screen lg:w-full grid lg:grid-cols-[.7fr_.3fr] ">
         <div
             style="background-image: url(/asset/pattern.svg)"
-            class="h-screen w-full bg-repeat-x p-8 pl-8"
+            class="min-h-screen hidden lg:block w-full bg-repeat-x p-8 pl-8"
         >
             <img src="/asset/logo.png" alt="logo" class="w-40" />
 
@@ -17,7 +17,8 @@
             </p>
         </div>
         <div class="p-4">
-            <h1 class="text-primary mt-[15vh] text-center text-3xl">
+            <img src="/asset/logo color.svg" alt="" class="w-28">
+            <h1 class="text-primary mt-10 lg:mt-[15vh] text-center text-3xl">
                 Login Your Account
             </h1>
 
@@ -88,12 +89,13 @@
                     />
 
                     {{-- eye --}}
-                    <button class="absolute top-6 right-0">
+                    <button class="absolute bg-white p-1  top-6 right-0">
                         {{-- eye open --}}
                         <svg
                             @click.prevent="showPassword = true"
+                            x-cloak
                             x-show="!showPassword"
-                            class="w-8"
+                            class="w-8 "
                             viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
@@ -113,6 +115,7 @@
                         <svg
                             @click.prevent="showPassword = false"
                             x-show="showPassword"
+                            x-cloak
                             class="w-8"
                             viewBox="0 0 24 24"
                             fill="none"
@@ -137,11 +140,11 @@
 
                 <div class="flex flex-col">
                     <button
-                        class="btn bg-primary mx-auto mt-7 max-w-max rounded-xl border-none px-10 py-8 text-2xl text-white"
+                        class="btn  bg-primary mx-auto mt-7 max-w-max rounded-xl border-none px-6 py-4 lg:px-10 lg:py-8 text-lg lg:text-2xl text-white"
                     >
                         Login
                     </button>
-                    <small class="text-primary text-center">
+                    <small class="text-primary text-center" class="my-2 inline-block">
                         Belum Punya akun ?
                         <a href="/register" class="underline">Daftar Disini</a>
                     </small>

@@ -4,7 +4,7 @@
     'totalAlternative'
 
 ])
-<div class="stats my-4 w-full shadow">
+<div class="stats stats-vertical md:stats-horizontal my-4 w-full shadow">
     <div class="stat">
         <div class="stat-figure text-secondary">
             <svg
