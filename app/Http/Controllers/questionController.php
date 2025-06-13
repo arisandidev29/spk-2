@@ -27,10 +27,13 @@ class questionController extends Controller
         $validatationData = [];
 
         foreach(Kriteria::all() as $kriteria) {
-            $validatationData["{$kriteria->kd_kriteria}.*.jawaban"] = 'required|numeric';
+            foreach(Alternative::all() as $alternative) {
+                $validatationData['userAnswer.'.$kriteria->kd_kriteria . "." . $alternative->name .  ".jawaban"] = 'required|numeric';
+            }
         }
 
         // valdate input 
+
 
         $validator = Validator::make($request->all(), $validatationData);
 
