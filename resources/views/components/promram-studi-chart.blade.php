@@ -1,3 +1,4 @@
+@props(["data"])
 <div class="w-full flex-1">
     <canvas id="Programstudichart"></canvas>
 </div>
@@ -13,7 +14,7 @@
                 datasets: [
                     {
                         label: 'My First Dataset',
-                        data: [300, 50, 100],
+                        data:  {{json_encode($data)}},
                         backgroundColor: [
                             '#009739',
                             'rgb(54, 162, 235)',

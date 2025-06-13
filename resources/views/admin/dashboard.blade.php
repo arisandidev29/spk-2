@@ -11,7 +11,7 @@
 
         <div class="flex flex-col gap-4 md:flex-row  justify-center">
             <x-user-registration-chart :userRegisration="$userRegisration"/>
-            <x-promram-studi-chart />
+            <x-promram-studi-chart :data="$dataAlternative"  />
         </div>
     </div>
 

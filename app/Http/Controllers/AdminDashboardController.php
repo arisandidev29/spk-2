@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternative;
+use App\Models\HasilRekomendasi;
 use App\Models\Kriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +13,18 @@ class AdminDashboardController extends Controller
 {
     public function show()
     {
+
+
+        $dataAlternative = HasilRekomendasi::where('rangking', 1)
+            ->whereHas('user', function ($query) {
+                $query->where('role', 'user');
+            })
+            ->select( DB::raw('COUNT(*) as jumlah_user'))
+            ->groupBy('alternative_id')
+            ->orderBy('alternative_id')
+            ->pluck('jumlah_user')->toArray();
+        
+
 
         $data = DB::table('users')
             ->select(DB::raw("MONTH(created_at) as bulan"), DB::raw('COUNT(*) as jumlah'))
@@ -35,7 +48,8 @@ class AdminDashboardController extends Controller
             'userRegisration' => $userRegistration,
             'totalUser' => User::where('role', '<>', 'admin')->count(),
             'totalKriteria' => Kriteria::count(),
-            'totalAlternative' => Alternative::count()
+            'totalAlternative' => Alternative::count(),
+            'dataAlternative' => $dataAlternative
         ]);
     }
 }
